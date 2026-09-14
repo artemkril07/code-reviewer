@@ -1,0 +1,21 @@
+@import "./styles/fonts/fonts.css";
+@import "tailwindcss";
+
+@theme {
+    --default-font-family: MyFont;
+    --text-default: clamp(2rem, 1rem + 1.5vw, 5rem);
+}
+
+
+@utility flex-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+@layer base{
+    body{
+        font-size: 1.5rem;
+    }
+}
