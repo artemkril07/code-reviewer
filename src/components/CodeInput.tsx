@@ -7,9 +7,10 @@ export const CodeInput: FC<CodeInputProps> = () => {
   const [aiResponse, setAiResponse] = useState<string>("");
   const [errorRequest, setErrorRequest] = useState<string>("")
 
-  const controlCode = (e) => {
+
+  // type of event as typescript
+  const controlCode = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleClick = async () => {
@@ -25,13 +26,15 @@ export const CodeInput: FC<CodeInputProps> = () => {
         setAiResponse(responseDataAi);
         console.log(responseDataAi);
       }else{
-        setErrorRequest('Помилка сервера');
+        setErrorRequest('Error server');
         
       }
       
     } catch (error) {
       console.error(error.message);
-      setErrorRequest(error.message);
+
+      // type of error because typescript initialize it as "unknown"
+      setErrorRequest(error instanceof Error ? error.message : 'An error occured' );
     }
   };
 

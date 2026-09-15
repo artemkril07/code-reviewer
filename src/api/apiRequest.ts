@@ -3,30 +3,27 @@ import.meta.env;
 // Structure of api request on Gemini server
 
 export const sendRequest = async (request: string) => {
-  const url: string =
-    "https://openrouter.ai/api/v1/chat/completions";
+  const url: string = "https://openrouter.ai/api/v1/chat/completions";
 
   const response = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${ import.meta.env.VITE_OPEN_ROUTER_API_KEY}`,
-      'HTTP-Referer': 'http://localhost:5173/',
-      'X-Title': 'Code Reviewer',
+      Authorization: `Bearer ${import.meta.env.VITE_OPEN_ROUTER_API_KEY}`,
+      "HTTP-Referer": "http://localhost:5173/",
+      "X-Title": "Code Reviewer",
     },
-     body: JSON.stringify({
-    model: 'qwen/qwen-2.5-coder-32b-instruct',
-    messages: [
-      {
-        role: 'user',
-        content: request,
-      },
-    ],
-  }),
+    body: JSON.stringify({
+      model: "qwen/qwen-2.5-coder-32b-instruct",
+      messages: [
+        {
+          role: "user",
+          content: request,
+        },
+      ],
+    }),
   });
 
-  // console.log(import.meta.env.VITE_OPEN_ROUTER_API_KEY);
-  
   // Checking if there is an error with response from server
 
   if (!response.ok) {
