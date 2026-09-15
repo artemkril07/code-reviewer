@@ -31,10 +31,11 @@ export const CodeInput: FC<CodeInputProps> = () => {
       }
       
     } catch (error) {
-      console.error(error.message);
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred';
+      console.error(errorMessage);
+      setErrorRequest(errorMessage );
 
       // type of error because typescript initialize it as "unknown"
-      setErrorRequest(error instanceof Error ? error.message : 'An error occured' );
     }
   };
 
