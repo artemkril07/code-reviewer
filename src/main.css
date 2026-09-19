@@ -1,9 +1,11 @@
 @import "./styles/fonts/fonts.css";
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-    --default-font-family: MyFont;
-    --text-default: clamp(2rem, 1rem + 1.5vw, 5rem);
+  --default-font-family: "MyFont";
+  --text-default: clamp(2rem, 1rem + 1.5vw, 5rem);
 }
 
 
@@ -17,8 +19,8 @@
     width: 30rem
 }
 
-@layer base{
-    body{
-        font-size: 1.5rem;
-    }
+@layer base {
+  body {
+    font-size: 1.5rem;
+  }
 }

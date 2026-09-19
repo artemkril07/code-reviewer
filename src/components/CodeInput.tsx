@@ -7,14 +7,15 @@ export const CodeInput: FC<CodeInputProps> = () => {
   const [aiResponse, setAiResponse] = useState<string>("");
   const [errorRequest, setErrorRequest] = useState<string>("")
 
+  // Type of event as typescript
 
-  // type of event as typescript
-  const controlCode = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const observeInputCode = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(e.target.value);
   };
 
   const handleClick = async () => {
-    setAiResponse("")
+    setAiResponse(" ");
+    setInputValue(" ");
     localStorage.setItem("userCode", JSON.stringify(inputValue));
     try {
       const response = await sendRequest(inputValue);
@@ -41,36 +42,32 @@ export const CodeInput: FC<CodeInputProps> = () => {
 
   return (
     <div>
-      <div className="">
-        <h1 className="text-default uppercase text-center mt-10">Code Reviewer</h1>
-        <h6 className="text-center">by dr.Cactus</h6>
-      </div>
-      <div className=" grid  grid-cols-3 justify-center mt-20 p-8 gap-20">
+     
+      <div className=" grid  grid-cols-3 justify-center mt-20 p-8 gap-20 ">
         <div className="code-container flex-container col-span-2 ml-auto">
           <div className="grid grid-cols-1 w-fit gap-4">
             <p>Check your code and refactor it with AI-assistant</p>
             <textarea
-              className="w-full h-70 border-black border-4 rounded-lg resize-none p-2"
+              className="w-full h-70 border-black border-4 rounded-lg resize-none p-2 dark:border-white " 
               name="codeReviwer"
               id="codeReviwer"
               placeholder="insert your code (max 500 symbols)"
               maxLength={500}
-              onChange={controlCode}
+              onChange={observeInputCode}
               value={inputValue}
             ></textarea>
             <button
               type="button"
-              className="border-black border-4 rounded-lg p-2 ml-auto"
-              onClick={handleClick}
-            >
-              Send
+              className="border-black border-4 rounded-lg p-2 ml-auto dark:border-white "
+              onClick={handleClick}>
+                Send
             </button>
           </div>
         </div>
         <div className="ai-container flex flex-col gap-4">
           <p className="text-center">Feedback of AI assistant</p>
           <textarea
-            className="w-full h-70 border-black border-4 rounded-lg resize-none p-2"
+            className="w-full h-70 border-black border-4 rounded-lg resize-none p-2 dark:border-white "
             name="aiResponse"
             id="aiResponse"
             placeholder="there will be feedback"
