@@ -1,5 +1,3 @@
-import.meta.env;
-
 // Structure of api request on Gemini server
 
 export const sendRequest = async (request: string) => {

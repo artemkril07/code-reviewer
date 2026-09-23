@@ -16,7 +16,7 @@ export const ThemeToggle: FC = () => {
       <div className="flex justify-end">
         <button
           type="button"
-          className="themeToggle border-2 rounded-full mr-10 text-xs w-25 p-2"
+          className="themeToggle border-2 rounded-full mr-10 text-xs w-25 p-2 hover:bg-blue-400 hover: cursor-pointer"
           onClick={toggleTheme}
         >
           Change theme
