@@ -1,6 +1,7 @@
 import { useEffect, useState, type FC } from "react";
+import { Button } from "../components/ui/button";
 
-export const ThemeToggle: FC = () => {
+export const ButtonThemeToggle: FC = () => {
   const [isDark, setIsDark] = useState<boolean>(false);
 
   useEffect(() => {
@@ -14,16 +15,15 @@ export const ThemeToggle: FC = () => {
   return (
     <>
       <div className="flex justify-end">
-        <button
+        <Button
           type="button"
-          className="themeToggle border-2 rounded-full mr-10 text-xs w-25 p-2 hover:bg-blue-400 hover: cursor-pointer"
+          className=" mr-10 p-2 hover: cursor-pointer"
           onClick={toggleTheme}
         >
           Change theme
-        </button>
+        </Button>
       </div>
     </>
   );
 };
-
-export default ThemeToggle;
+export default ButtonThemeToggle;

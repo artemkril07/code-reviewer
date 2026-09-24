@@ -2,6 +2,9 @@ import { useState, type FC } from "react";
 import { type CodeInputProps } from "../types/index.ts";
 import { sendRequest } from "../api/apiRequest.ts";
 import { CodeEditor } from "./CodeEditor.tsx";
+import { Button } from "./ui/button.tsx";
+import { SelectAIComponent } from "./ui/SelectAIComponent.tsx";
+import { TabsComponent } from "./ui/TabsComponent.tsx";
 
 export const CodeInput: FC<CodeInputProps> = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -37,8 +40,6 @@ export const CodeInput: FC<CodeInputProps> = () => {
           error instanceof Error ? error.message : "An error occurred";
         console.error(errorMessage);
         setErrorRequest(errorMessage);
-
-        // type of error because typescript initialize it as "unknown"
       }
     } else {
       return alert("Заповніть поле");
@@ -46,36 +47,38 @@ export const CodeInput: FC<CodeInputProps> = () => {
   };
 
   return (
-    <div>
-      <div className=" grid  grid-cols-3 justify-center mt-20 p-8 gap-20 ">
-        <div className="code-container flex-container col-span-2 ml-auto">
-          <div className="grid grid-cols-1 w-fit gap-4">
-            <p>Check your code and refactor it with AI-assistant</p>
-            <CodeEditor
-              className="w-full h-70 border-black border-4 rounded-lg resize-none p-2 dark:border-white "
-              onChange={observeInputCode}
-              value={inputValue}
-            ></CodeEditor>
-            <button
-              type="button"
-              className="border-black border-4 rounded-lg p-2 ml-auto dark:border-white hover:bg-blue-400 hover: cursor-pointer"
-              onClick={handleClick}
-            >
-              Send
-            </button>
-          </div>
+    <div className="grid grid-cols-2 mt-10 p-8 gap-10 flex-1">
+      <div>
+        <div className="grid w-full gap-4">
+          <p>Write or insert your code here</p>
+         <TabsComponent/>
+          <CodeEditor
+            className="w-full h-70 border-black border-2 rounded-lg resize-none p-2 dark:border-white "
+            onChange={observeInputCode}
+            value={inputValue}
+          ></CodeEditor>
+          <Button
+            variant="outline"
+            type="button"
+            className="border-black border-2 rounded-lg p-4 ml-auto dark:border-white hover:cursor-pointer"
+            onClick={handleClick} >
+            Send
+          </Button>
         </div>
-        <div className="ai-container flex flex-col gap-4">
-          <p className="text-center">Feedback of AI assistant</p>
-          <textarea
-            className="w-full h-70 border-black border-4 rounded-lg resize-none p-2 dark:border-white "
-            name="aiResponse"
-            id="aiResponse"
-            placeholder="there will be feedback"
-            readOnly
-            value={errorRequest.length !== 0 ? errorRequest : aiResponse}
-          ></textarea>
+      </div>
+      <div className="ai-container flex flex-col gap-4 pl-10 pr-10">
+        <p className="text-center">Response</p>
+        <div className="mr-1">
+          <SelectAIComponent/>
         </div>
+        <textarea
+          className=" flex-1 w-full min-h-70 border-black border-2 rounded-lg resize-none p-2 dark:border-white"
+          name="aiResponse"
+          id="aiResponse"
+          placeholder="there will be feedback"
+          readOnly
+          value={errorRequest.length !== 0 ? errorRequest : aiResponse}
+        ></textarea>
       </div>
     </div>
   );
