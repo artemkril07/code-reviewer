@@ -1,75 +1,40 @@
-# React + TypeScript + Vite
+# Code Reviewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 **Live Demo:** [try the app](code-reviewer-livid-nine.vercel.app/)
 
-Currently, two official plugins are available:
+This app helps you to make your code better and more structural with AI assistance. It is an MVP project that shows my way of self-studying. You can try to use my application for your work! 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech stack
 
-## React Compiler
+* Frontend: React & TypeScript
+* Styling: Tailwind CSS with frameworks as shadcn and lucide
+* Code Editor: Code Mirror
+* Build Tool & Bundler: Vite
+* API Integration: OpenRouter / Gemini API
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
+* Multiple choices of programming languages or markdown
+* Several choices of AI response
+* Dark theme
+* API AI Integration: OpenRouter / Gemini API
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+## 🚀 Getting started:
+### 1. Clone the repo
+```bash
+git clone [https://github.com/artemkril07/code-reviewer.git](https://github.com/artemkril07/code-reviewer.git)
+cd code-reviewer
 ```
+### 2. Install dependencies
+```bash
+npm install
+```
+### 3.Set env variables
+```bash
+cp .env.example .env
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+VITE_OPEN_ROUTER_API_KEY=your_key_here
+```
+### 4. Run the project
+```bash
+npm run dev
 ```
