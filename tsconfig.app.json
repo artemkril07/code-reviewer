@@ -6,13 +6,9 @@
     "module": "esnext",
     "types": ["vite/client"],
     "allowArbitraryExtensions": true,
-  "skipLibCheck": true,
-  "ignoreDeprecations": "5.0",
-  "baseUrl": ".",
+    "skipLibCheck": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
