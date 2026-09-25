@@ -62,6 +62,7 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
         className,
       )}
       {...props}
+      
     />
   );
 }

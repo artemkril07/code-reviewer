@@ -11,7 +11,9 @@ export const CodeInput: FC<CodeInputProps> = () => {
   const [aiResponse, setAiResponse] = useState<string>("");
   const [errorRequest, setErrorRequest] = useState<string>("");
 
-  // Type of event as typescript
+  // Props from TabsComponent to CodeEditor
+
+  const [stateComponent, setStateComponent] = useState<string>("javascript");
 
   const observeInputCode = (value: string) => {
     setInputValue(value);
@@ -51,8 +53,9 @@ export const CodeInput: FC<CodeInputProps> = () => {
       <div>
         <div className="grid w-full gap-4">
           <p>Write or insert your code here</p>
-         <TabsComponent/>
+          <TabsComponent changeState={setStateComponent} />
           <CodeEditor
+            language={stateComponent}
             className="w-full h-70 border-black border-2 rounded-lg resize-none p-2 dark:border-white "
             onChange={observeInputCode}
             value={inputValue}
@@ -61,7 +64,8 @@ export const CodeInput: FC<CodeInputProps> = () => {
             variant="outline"
             type="button"
             className="border-black border-2 rounded-lg p-4 ml-auto dark:border-white hover:cursor-pointer"
-            onClick={handleClick} >
+            onClick={handleClick}
+          >
             Send
           </Button>
         </div>
@@ -69,7 +73,7 @@ export const CodeInput: FC<CodeInputProps> = () => {
       <div className="ai-container flex flex-col gap-4 pl-10 pr-10">
         <p className="text-center">Response</p>
         <div className="mr-1">
-          <SelectAIComponent/>
+          <SelectAIComponent />
         </div>
         <textarea
           className=" flex-1 w-full min-h-70 border-black border-2 rounded-lg resize-none p-2 dark:border-white"
