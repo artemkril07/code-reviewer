@@ -7,25 +7,28 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+import {PROMPTS_AI} from "../../constants/prompts" 
 
-const items = [
-  { label: "Select type of response", value: null },
-  { label: "Full Code Review", value: "Full Code Review" },
-  { label: "Optimize & Refactor", value: "Optimize & Refactor" },
-  { label: "Find Bugs & Vulnerabilities", value: "Find Bugs & Vulnerabilities" },
-  { label: "Generate Unit Tests", value: "Generate Unit Tests" },
-]
+interface SelectAIProps{
+  setAiID: (value: string)=> void 
+}
 
-export const SelectAIComponent = ()=> {
+export const SelectAIComponent = ( {setAiID} :SelectAIProps)=>  {
+
+
   return (
-    <Select items={items}>
+    <Select onValueChange={(val: string) => {
+  console.log("Обраний ID:", val);
+  setAiID(val);
+}}>
       <SelectTrigger className="w-full">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {items.map((item) => (
-            <SelectItem key={item.value} value={item.value}>
+          {PROMPTS_AI.map((item) => (
+            <SelectItem key={item.id} value={item.label} onClick= {()=> { console.log(item.id)}
+            } >
               {item.label}
             </SelectItem>
           ))}

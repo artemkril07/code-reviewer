@@ -5,12 +5,18 @@ import { CodeEditor } from "./CodeEditor.tsx";
 import { Button } from "./ui/button.tsx";
 import { SelectAIComponent } from "./ui/SelectAIComponent.tsx";
 import { TabsComponent } from "./ui/TabsComponent.tsx";
+import {AIResponseComponent} from "./AIResponseComponent.tsx"
+
+
+
+
 
 export const CodeInput: FC<CodeInputProps> = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const [aiResponse, setAiResponse] = useState<string>("");
   const [errorRequest, setErrorRequest] = useState<string>("");
-
+  const [aiID, setAiID] = useState("");
+  
   // Props from TabsComponent to CodeEditor
 
   const [stateComponent, setStateComponent] = useState<string>("javascript");
@@ -26,14 +32,13 @@ export const CodeInput: FC<CodeInputProps> = () => {
       setInputValue("");
       localStorage.setItem("userCode", JSON.stringify(inputValue));
       try {
-        const response = await sendRequest(inputValue);
+        const response = await sendRequest(inputValue, aiID);
         const data = await response.json();
         console.log(data);
 
         if (data.choices && data.choices.length > 0) {
           const responseDataAi = data.choices[0].message.content;
           setAiResponse(responseDataAi);
-          console.log(responseDataAi);
         } else {
           setErrorRequest("Error server");
         }
@@ -49,14 +54,13 @@ export const CodeInput: FC<CodeInputProps> = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 mt-10 p-8 gap-10 flex-1">
-      <div>
-        <div className="grid w-full gap-4">
+    <div className="flex justify-between w-full flex-1 h-full min-h-0">
+        <div className="h-full min-h-0 flex flex-col gap-4 pl-20 w-[50%]" >
           <p>Write or insert your code here</p>
           <TabsComponent changeState={setStateComponent} />
           <CodeEditor
             language={stateComponent}
-            className="w-full h-70 border-black border-2 rounded-lg resize-none p-2 dark:border-white "
+            className=" min-h-[30%] max-h-[50%] border-black border-2 rounded-lg resize-none p-2 dark:border-white overflow-y-auto text-xs "
             onChange={observeInputCode}
             value={inputValue}
           ></CodeEditor>
@@ -69,20 +73,12 @@ export const CodeInput: FC<CodeInputProps> = () => {
             Send
           </Button>
         </div>
-      </div>
-      <div className="ai-container flex flex-col gap-4 pl-10 pr-10">
+      <div className="h-full min-h-0 flex flex-col gap-4 pr-20 w-[40%]">
         <p className="text-center">Response</p>
-        <div className="mr-1">
-          <SelectAIComponent />
+        <div className="">
+          <SelectAIComponent setAiID={setAiID} />
         </div>
-        <textarea
-          className=" flex-1 w-full min-h-70 border-black border-2 rounded-lg resize-none p-2 dark:border-white"
-          name="aiResponse"
-          id="aiResponse"
-          placeholder="there will be feedback"
-          readOnly
-          value={errorRequest.length !== 0 ? errorRequest : aiResponse}
-        ></textarea>
+       <AIResponseComponent aiResponse={aiResponse} errorRequest={errorRequest} />
       </div>
     </div>
   );

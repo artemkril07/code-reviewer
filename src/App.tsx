@@ -7,11 +7,17 @@ import { ToolsComponent } from "./components/ToolsComponent";
 function App() {
   return (
     <>
-      <HeaderInput />
-      <ToolsComponent/>
-      <CodeInput />
-      <FeedbackComponent/>
-      <ContactsComponent/>
+      <div className="min-h-0 h-full flex flex-col flex-1 w-full">
+        <header className="mt-10 px-8 shrink-0">
+            <HeaderInput />
+        </header>
+        <main className="flex flex-col px-8 h-full mt-10 min-h-0">
+          <ToolsComponent />
+          <CodeInput />
+          <FeedbackComponent />
+        </main>
+        <ContactsComponent />
+      </div>
     </>
   );
 }

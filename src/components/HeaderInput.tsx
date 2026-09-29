@@ -3,7 +3,7 @@ import { ButtonThemeToggle } from "./ButtonThemeToggle";
 export const HeaderInput = () => {
   return (
     <div>
-      <div className="mt-10 flex justify-between">
+      <div className="flex justify-between">
         <div>
           <a href="#">
             <img
@@ -11,7 +11,7 @@ export const HeaderInput = () => {
               height={100}
               src="src/assets/images/CR_logo.webp"
               alt="logo"
-              className="ml-8 rounded-full"
+              className="rounded-full"
             />
           </a>
         </div>

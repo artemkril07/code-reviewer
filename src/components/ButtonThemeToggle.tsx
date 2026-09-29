@@ -17,7 +17,7 @@ export const ButtonThemeToggle: FC = () => {
       <div className="flex justify-end">
         <Button
           type="button"
-          className=" mr-10 p-2 hover: cursor-pointer"
+          className="p-2 hover: cursor-pointer"
           onClick={toggleTheme}
         >
           Change theme

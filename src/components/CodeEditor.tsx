@@ -33,14 +33,12 @@ export const CodeEditor: FC<EditorProps> = ({
   const viewRef = useRef<EditorView | null>(null);
 
   useEffect(() => {
-    // Якщо HTML не загрузився то нічого не роби, оскльіки хук може раніше спрацювати і тоді div буде пустим, що зламає додаток
+    // Якщо HTML не загрузився то нічого не роби, оскільки хук може раніше спрацювати і тоді div буде пустим, що зламає додаток
     if (!editorRef.current) return;
     // Ініціалізація обирання мови для редактора, в хуці при першому монтуванні, щоб при загрузці була перша мова, яка прописана в іншому компоненті.
-    const getLangExtFn =
-      languagesArray[language as keyof typeof languagesArray];
+    const getLangExtFn = languagesArray[language as keyof typeof languagesArray];
     // Цей рядок довзоляє зберегти у змінну готове розширення для CodeMirror
-    const initLangExt =
-      typeof getLangExtFn === "function" ? getLangExtFn() : javascript();
+    const initLangExt = typeof getLangExtFn === "function" ? getLangExtFn() : javascript();
     const myEditor = new EditorView({
       doc: value,
       extensions: [
@@ -89,7 +87,7 @@ export const CodeEditor: FC<EditorProps> = ({
   }, [language]);
 
   return (
-    <div className={className}>
+      <div className={className}>
       <div ref={editorRef}></div>
     </div>
   );
