@@ -16,7 +16,7 @@ interface SelectAIProps {
 
 export const SelectAIComponent = ({ selectAILabel, value }: SelectAIProps) => {
   return (
-    <Select value={value} onValueChange={selectAILabel}>
+    <Select value={value} onValueChange={(val) => selectAILabel(val ?? "")}>
       <SelectTrigger className="w-full">
         <SelectValue placeholder="Select an option" />
       </SelectTrigger>
