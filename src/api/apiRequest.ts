@@ -1,14 +1,9 @@
-import { PROMPTS_AI } from "@/constants/prompts";
 
 // Структура апі запиту
 
 export const sendRequest = async (request: string, aiPrompt: string) => {
   const url: string = "https://openrouter.ai/api/v1/chat/completions";
 
-  // Шукаємо по id в масиві потрібений об'єкт
-  const findID = PROMPTS_AI.find((item: any) => item.id === aiPrompt);
-  // Зберігаємо через id об'єкта в змінну сам промпт АБО записуємо пустий рядок якщо id нема або помилкове
-  const selectedPrompt = findID?.prompt || "";
   // Стандртний запит апі з тілом і структурою самої нейронки
   const response = await fetch(url, {
     method: "POST",
@@ -23,7 +18,7 @@ export const sendRequest = async (request: string, aiPrompt: string) => {
       messages: [
         {
           role: "system",
-          content: selectedPrompt,
+          content: aiPrompt,
         },
         {
           role: "user",

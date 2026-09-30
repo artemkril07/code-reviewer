@@ -5,35 +5,30 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
-import {PROMPTS_AI} from "../../constants/prompts" 
+import { PROMPTS_AI } from "../../constants/prompts";
 
-interface SelectAIProps{
-  setAiID: (value: string)=> void 
+interface SelectAIProps {
+  selectAILabel: (value: string) => void;
+  value: string;
 }
 
-export const SelectAIComponent = ( {setAiID} :SelectAIProps)=>  {
-
-
+export const SelectAIComponent = ({ selectAILabel, value }: SelectAIProps) => {
   return (
-    <Select onValueChange={(val: string) => {
-  console.log("Обраний ID:", val);
-  setAiID(val);
-}}>
+    <Select value={value} onValueChange={selectAILabel}>
       <SelectTrigger className="w-full">
-        <SelectValue />
+        <SelectValue placeholder="Select an option" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           {PROMPTS_AI.map((item) => (
-            <SelectItem key={item.id} value={item.label} onClick= {()=> { console.log(item.id)}
-            } >
+            <SelectItem key={item.id} value={item.label}>
               {item.label}
             </SelectItem>
           ))}
         </SelectGroup>
       </SelectContent>
     </Select>
-  )
-}
+  );
+};
